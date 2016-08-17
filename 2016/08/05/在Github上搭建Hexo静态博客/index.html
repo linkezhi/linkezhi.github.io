@@ -121,17 +121,10 @@ GitHub账号
 <meta property="og:image" content="https://linkezhi.github.io/img/%7DCT%5BPTFY0V_DT7AW%60ASP~54.png">
 <meta property="og:image" content="https://linkezhi.github.io/img/XEKC0QG50%7BH%28F1M~A%5DFSVQ1.png">
 <meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817205016.png">
-<meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817210526.png">
-<meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817210830.png">
-<meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817211531.png">
-<meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817211645.png">
-<meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817211718.png">
-<meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817212021.png">
-<meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817212111.png">
 <meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817212322.png">
 <meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817212755.png">
 <meta property="og:image" content="https://linkezhi.github.io/img/QQ%E6%88%AA%E5%9B%BE20160817213113.png">
-<meta property="og:updated_time" content="2016-08-17T13:43:38.136Z">
+<meta property="og:updated_time" content="2016-08-17T14:06:42.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Github上搭建Hexo静态博客">
 <meta name="twitter:description" content="准备系统：
@@ -393,24 +386,26 @@ GitHub账号
 <h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><blockquote>
 <p>我们能通过<a href="http://localhost:4000/访问自己的博客，在同一个局域网其他机器也可以通过http://+‘主机ip’+:4000/" target="_blank" rel="external">http://localhost:4000/访问自己的博客，在同一个局域网其他机器也可以通过http://+‘主机ip’+:4000/</a> 访问博客，但为了让别人能通过互联网访问我们的博客站点，我们需要把本地的站点发布到Github上，下面就叫大家如何把本地的博客站点发布到Github上。</p>
 </blockquote>
-<p> 1.获取版本库地址<br>进到你创建的用来发布博客的版本库中，复制URL。<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817210526.png" alt="enter description here" title="QQ截图20160817210526.png"></p>
-<p>然后编辑_config.yml文件，修改文件里面的deploy。其中的repository就改成你刚刚复制的地址。保存这个文件。<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817210830.png" alt="enter description here" title="QQ截图20160817210830.png"></p>
-<p> 2.配置SSH keys</p>
+<p> 1.配置SSH keys</p>
 <blockquote>
 <p>SSH keys 能把本地的git项目与远程的github建立联系</p>
 </blockquote>
-<p>在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。<br> <code>ls -al ~/.ssh</code><br>如果存在的话，直接删除.ssh文件夹里面所有文件重新生成。<br>生成SSH Key：<br>输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车：<br>ssh-keygen -t rsa -C “<strong>*</strong>@163.com”<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817211531.png" alt="enter description here" title="QQ截图20160817211531.png"></p>
-<p>然后它会提示要你输入passphrase（如上图，我没有输入直接回车，如果你输入的话，要记得，到时候会用到）。之后，如果出现类似下图：<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817211645.png" alt="enter description here" title="QQ截图20160817211645.png"></p>
-<p>然后键入以下指令：<br>ssh-agent -s<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817211718.png" alt="enter description here" title="QQ截图20160817211718.png"><br>继续输入指令：<br>ssh-add ~/.ssh/id_rsa<br>有时会报错<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212021.png" alt="enter description here" title="QQ截图20160817212021.png"></p>
-<p>出错了的话，就输入以下指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eval `ssh-agent -s`</div><div class="line">ssh-add</div></pre></td></tr></table></figure>
-<p><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212111.png" alt="enter description here" title="QQ截图20160817212111.png"></p>
-<p> 3.添加SSH key到Github</p>
+<p>生成新的SSH Key：<br>在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。<br> <code>ls -al ~/.ssh</code><br>如果存在的话，直接删除.ssh文件夹里面所有文件重新生成。<br>生成SSH Key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;</div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;直接回车&gt;</div></pre></td></tr></table></figure>
+<p>注意1: 此处的邮箱地址，你可以输入自己的邮箱地址；<br>注意2: 此处的「-C」的是大写的「C」<br>然后系统会要你输入密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;</div><div class="line">Enter same passphrase again:&lt;再次输入加密串&gt;</div></pre></td></tr></table></figure>
+<p>在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。</p>
+<p> 2.添加SSH key到Github</p>
 <p> 键入以下指令，拷贝Key（先拷贝了，等一下可以直接粘贴）：<br>clip &lt; ~/.ssh/id_rsa.pub<br>到Github里面新增SSH key<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212322.png" alt="enter description here" title="QQ截图20160817212322.png"><br>然后在Key里粘贴刚刚拷贝的key（也可以文本打开文件复制里面的内容）<br>点击 Add Key</p>
 <p>输入你的Github密码即可完成SSH Key的添加。嗯，最后还是测试一下吧，键入以下命令，你可能会看到有警告，没事，输入“yes”就好。：<br> <code>ssh -T git@github.com</code><br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212755.png" alt="enter description here" title="QQ截图20160817212755.png"></p>
-<p> 4.完成部署<br>键入指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
-<p>在浏览器输入：<br><a href="http://你的用户名.github.io/" target="_blank" rel="external">http://你的用户名.github.io/</a><br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817213113.png" alt="enter description here" title="QQ截图20160817213113.png"></p>
+<p> 3.设置git身份信息<br>键入指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;你的用户名&quot;</div><div class="line">$ git config --global user.email &quot;你的邮箱&quot;</div></pre></td></tr></table></figure>
+<p>发布更新博客</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d -g</div></pre></td></tr></table></figure>
+<p>发布时需要输入github的帐号和密码，输入密码时是看不到自己输入的内容的<br>如果发布遇到</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">On</span> branch master</div><div class="line"><span class="literal">nothing</span> <span class="keyword">to</span> commit， working directory clean</div></pre></td></tr></table></figure>
+<p>就先删除.deploy 再发布<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rm -rf .deploy</div><div class="line">hexo clean</div><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure></p>
+<p>发布成功后在浏览器输入：<br><a href="http://你的用户名.github.io/" target="_blank" rel="external">http://你的用户名.github.io/</a><br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817213113.png" alt="enter description here" title="QQ截图20160817213113.png"></p>
 <p>每次修改本地文件后，需要键入hexo generate才能保存。每次使用命令时，都要在C:\Hexo目录下。每次想要上传文件到Github时，就应该先键入hexo generate保存之后，再键入hexo deploy。</p>
 
       

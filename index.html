@@ -198,32 +198,9 @@
       
 
       
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
-
-
-    </div>
   
 </nav>
 
@@ -309,7 +286,83 @@
       
         
           
-            
+            <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p><strong>系统：</strong></p>
+<ul>
+<li>Window7 64位<br><strong>软件：</strong></li>
+<li>Git</li>
+<li>Node.js<br><strong>注册账号：</strong></li>
+<li>GitHub账号</li>
+</ul>
+<hr>
+<h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><ol>
+<li>验证是否已安装完相关软件<ul>
+<li>验证是否已安装git，在任意目录下右击鼠标查看是否找打Git Bash Here的选项。<br><img src="/img/4ec2d5628535e5dd90259a7e71c6a7efce1b6201.jpg" alt="enter description here" title="4ec2d5628535e5dd90259a7e71c6a7efce1b6201.jpg"></li>
+<li>验证是否安装Node.js,打开cmd(点击”开始菜单” -&gt; “运行” -&gt; 在打开的输入框中输入cmd-&gt;回车确认)，输入命令行 node -v。查看是否能显示出Node.js 的当前版本信息。<br><img src="/img/d5c67235-696a-40c6-9cae-0313657d7de8.png" alt="enter description here" title="d5c67235-696a-40c6-9cae-0313657d7de8.png"></li>
+</ul>
+</li>
+<li>相关软件的安装</li>
+</ol>
+<ul>
+<li>Git: <a href="https://www.baidu.com/link?url=yxX6Se12M8uzk1hi-xJ4HgKmfl1wPLTnS8C4aTASGX3Y7PhTcS_ikeB7FRb92JjdisfTCcYj8l_NJiYeK9koQNuQS7K-yPNjLpeoMVDzZDG&amp;wd=&amp;eqid=e5e319750007f04b0000000657a4a6a2" target="_blank" rel="external">msysgit</a>软件，执行安装程序，直接默认安装。</li>
+<li>Node.js:<a href="https://nodejs.org/dist/v4.4.4/node-v4.4.4-x64.msi" target="_blank" rel="external">node.js</a>,直接默认安装.</li>
+</ul>
+<ol>
+<li>GitHub注册</li>
+</ol>
+<ul>
+<li>进入<a href="https://github.com/" target="_blank" rel="external">GitHub首页</a>,按提示创建你的GitHub账号。当你填写完你的信息后，github会发一封邮件到你的注册邮箱下，点击邮箱的链接地址就能激活你的账号。</li>
+<li>账号激活后登陆你的githup账号，然后点击New repository 新建一个repository（存放你博客代码的版本库）。版本库的名称格式应遵从 “xxxx.github.io”，xxxx为你的账号名称。如我的账号名称为linkezhi，建立的版本库名称为 linkezhi.github.io<br><img src="/img/N%5BAM%29X2XSU77%7BO_WG1T%287DY.png" alt="enter description here" title="N[AM&#41;X2XSU77{O_WG1T&#40;7DY.png"><br><img src="/img/GMO$~1CQFHV~Z49EPIJX32N.png" alt="enter description here" title="GMO$~1CQFHV~Z49EPIJX32N.png"></li>
+<li>进入到你这个版本库中，切换到Setting选项-&gt;点击’’Launch automatic page generator’’(构建静态网页)-&gt;点击底部的”Continue to layouts”-&gt;点击”Publish page”,然后通过在浏览器里输入”<a href="https://xxxx.github.io/" target="_blank" rel="external">https://xxxx.github.io/</a>“  （xxxx为账号名）地址就能访问你的静态页面了。<br><img src="/img/0J7KLLIH%295%28C%28CRVT7$3RMI.png" alt="enter description here" title="0J7KLLIH&#41;5&#40;C&#40;CRVT7$3RMI.png"><br><img src="/img/LVFCA%28XA51$1XJ~D7XF~Z8W.png" alt="enter description here" title="LVFCA&#40;XA51$1XJ~D7XF~Z8W.png"><br><img src="/img/%7DCT%5BPTFY0V_DT7AW%60ASP~54.png" alt="enter description here" title="}CT[PTFY0V_DT7AW`ASP~54.png"></li>
+</ul>
+<hr>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><ol>
+<li>新建一个文件夹如mBlog，文件夹所在的目录最好要没有中文路径</li>
+<li>进入mBlog文件夹，空白位置右键点击<code>Git Bash Here</code></li>
+<li>安装Hexo<br><code>npm install hexo-cli -g</code></li>
+<li>初始化mBlog文件夹<br><code>hexo init</code></li>
+<li>生成静态文件<br><code>hexo g</code></li>
+<li>启动服务器进行本地预览<br><code>hexo s</code></li>
+<li>浏览器打开<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> ，安装成功就能看到博客页面，Hexo安装就完成了<br><img src="/img/XEKC0QG50%7BH%28F1M~A%5DFSVQ1.png" alt="enter description here" title="XEKC0QG50{H&#40;F1M~A]FSVQ1.png"><blockquote>
+<p>因为墙的原因有时初始化时会比较慢，耐心等待就行。有些教程会用淘宝NPM镜像，但使用NPM镜像安装的Hexo有时候会初始化时报错。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h2 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h2><blockquote>
+<p>本博客的Hexo使用的是<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">Next主题</a>,，Next主题简洁优雅是本人比较喜欢的一种风格，所以下面就是如何配置Next主题的Hexo。</p>
+</blockquote>
+<hr>
+<ol>
+<li><p>下载Next 主题<br>进到你的Hexo安装目录下的themes下，右键–Git Bash Here，打开git的命令行窗口，通过git下载next<br><code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code><br>下载完后可以通过Hexo的配置文件启用主题。</p>
+</li>
+<li><p>Hexo 基础配置<br>在你安装的Hexo目录下有个_config.yml文件，这个文件就是Hexo的配置文件，打开文件进行配置。下面是我的配置，可以参照着配置自己的博客。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"># Hexo Configuration</div><div class="line">## Docs: https://hexo.io/docs/configuration.html</div><div class="line">## Source: https://github.com/hexojs/hexo/</div><div class="line"></div><div class="line"># Site</div><div class="line">title: Z博客 #站点名，站点左上角</div><div class="line">subtitle: Hello World #副标题，站点左上角</div><div class="line">description: #给搜索引擎看的，对站点的描述，可以自定义</div><div class="line">author: linkezhi #在站点左下角可以看到</div><div class="line">language: zh-Hans #Next主题下的中文设置，主题不同属性值也不同</div><div class="line">timezone:</div><div class="line"></div><div class="line"># URL #这项暂不配置，绑定域名后，欲创建sitemap.xml需要配置该项</div><div class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</div><div class="line">url: https://linkezhi.github.io/</div><div class="line">root: /</div><div class="line">permalink: :year/:month/:day/:title/</div><div class="line">permalink_defaults:</div><div class="line"></div><div class="line"># Directory</div><div class="line">source_dir: source</div><div class="line">public_dir: public</div><div class="line">tag_dir: tags</div><div class="line">archive_dir: archives</div><div class="line">category_dir: categories</div><div class="line">code_dir: downloads/code</div><div class="line">i18n_dir: :lang</div><div class="line">skip_render:</div><div class="line"></div><div class="line"># Writing 文章布局、写作格式的定义，不修改</div><div class="line">new_post_name: :title.md # File name of new posts</div><div class="line">default_layout: post</div><div class="line">titlecase: false # Transform title into titlecase</div><div class="line">external_link: true # Open external links in new tab</div><div class="line">filename_case: 0</div><div class="line">render_drafts: false</div><div class="line">post_asset_folder: false</div><div class="line">relative_link: false</div><div class="line">future: true</div><div class="line">highlight:</div><div class="line">  enable: true</div><div class="line">  line_number: true</div><div class="line">  auto_detect: false</div><div class="line">  tab_replace:</div><div class="line"></div><div class="line"># Category &amp; Tag</div><div class="line">default_category: uncategorized</div><div class="line">category_map:</div><div class="line">tag_map:</div><div class="line"></div><div class="line"># Date / Time format</div><div class="line">## Hexo uses Moment.js to parse and display date</div><div class="line">## You can customize the date format as defined in</div><div class="line">## http://momentjs.com/docs/#/displaying/format/</div><div class="line">date_format: YYYY-MM-DD</div><div class="line">time_format: HH:mm:ss</div><div class="line"></div><div class="line"># Pagination 每页显示文章数</div><div class="line">## Set per_page to 0 to disable pagination</div><div class="line">per_page: 10</div><div class="line">pagination_dir: page</div><div class="line"></div><div class="line"># Extensions 配置站点所用主题和插件 这里配置的是next主题，需要先下载主题再配置</div><div class="line">## Plugins: https://hexo.io/plugins/</div><div class="line">## Themes: https://hexo.io/themes/</div><div class="line">theme: next</div><div class="line"></div><div class="line"># Deployment 站点部署到github的配置</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  #linkezhi改为你的github用户名</div><div class="line">  repository: git@github.com:linkezhi/linkezhi.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<p>配置完成了可以重新构建一下，启动Hexo查看一下站点。<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817205016.png" alt="enter description here" title="QQ截图20160817205016.png"></p>
+<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><blockquote>
+<p>我们能通过<a href="http://localhost:4000/访问自己的博客，在同一个局域网其他机器也可以通过http://+‘主机ip’+:4000/" target="_blank" rel="external">http://localhost:4000/访问自己的博客，在同一个局域网其他机器也可以通过http://+‘主机ip’+:4000/</a> 访问博客，但为了让别人能通过互联网访问我们的博客站点，我们需要把本地的站点发布到Github上，下面就叫大家如何把本地的博客站点发布到Github上。</p>
+</blockquote>
+<p> 1.获取版本库地址<br>进到你创建的用来发布博客的版本库中，复制URL。<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817210526.png" alt="enter description here" title="QQ截图20160817210526.png"></p>
+<p>然后编辑_config.yml文件，修改文件里面的deploy。其中的repository就改成你刚刚复制的地址。保存这个文件。<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817210830.png" alt="enter description here" title="QQ截图20160817210830.png"></p>
+<p> 2.配置SSH keys</p>
+<blockquote>
+<p>SSH keys 能把本地的git项目与远程的github建立联系</p>
+</blockquote>
+<p>在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。<br> <code>ls -al ~/.ssh</code><br>如果存在的话，直接删除.ssh文件夹里面所有文件重新生成。<br>生成SSH Key：<br>输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车：<br>ssh-keygen -t rsa -C “<strong>*</strong>@163.com”<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817211531.png" alt="enter description here" title="QQ截图20160817211531.png"></p>
+<p>然后它会提示要你输入passphrase（如上图，我没有输入直接回车，如果你输入的话，要记得，到时候会用到）。之后，如果出现类似下图：<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817211645.png" alt="enter description here" title="QQ截图20160817211645.png"></p>
+<p>然后键入以下指令：<br>ssh-agent -s<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817211718.png" alt="enter description here" title="QQ截图20160817211718.png"><br>继续输入指令：<br>ssh-add ~/.ssh/id_rsa<br>有时会报错<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212021.png" alt="enter description here" title="QQ截图20160817212021.png"></p>
+<p>出错了的话，就输入以下指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eval `ssh-agent -s`</div><div class="line">ssh-add</div></pre></td></tr></table></figure>
+<p><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212111.png" alt="enter description here" title="QQ截图20160817212111.png"></p>
+<p> 3.添加SSH key到Github</p>
+<p> 键入以下指令，拷贝Key（先拷贝了，等一下可以直接粘贴）：<br>clip &lt; ~/.ssh/id_rsa.pub<br>到Github里面新增SSH key<br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212322.png" alt="enter description here" title="QQ截图20160817212322.png"><br>然后在Key里粘贴刚刚拷贝的key（也可以文本打开文件复制里面的内容）<br>点击 Add Key</p>
+<p>输入你的Github密码即可完成SSH Key的添加。嗯，最后还是测试一下吧，键入以下命令，你可能会看到有警告，没事，输入“yes”就好。：<br> <code>ssh -T git@github.com</code><br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817212755.png" alt="enter description here" title="QQ截图20160817212755.png"></p>
+<p> 4.完成部署<br>键入指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
+<p>在浏览器输入：<br><a href="http://你的用户名.github.io/" target="_blank" rel="external">http://你的用户名.github.io/</a><br><img src="/img/QQ%E6%88%AA%E5%9B%BE20160817213113.png" alt="enter description here" title="QQ截图20160817213113.png"></p>
+<p>每次修改本地文件后，需要键入hexo generate才能保存。每次使用命令时，都要在C:\Hexo目录下。每次想要上传文件到Github时，就应该先键入hexo generate保存之后，再键入hexo deploy。</p>
+
           
         
       
@@ -662,135 +715,6 @@
 
   
   
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
-                    }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
-        }
-    });}
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-
-    });
-
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
-
 
   
 

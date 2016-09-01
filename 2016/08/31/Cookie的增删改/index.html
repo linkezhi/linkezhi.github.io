@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jquery.cookie.js,web前端,Cookie," />
+  <meta name="keywords" content="jquery,web前端," />
 
 
 
@@ -89,8 +89,7 @@
 Cookei存储在浏览器中的变量一小段的文本信息，在客户端中记录用户信息。区别于Cookei的Session是通过服务端记录用户信息确定用户身份。
 
 
-通过jquery.cookie(）的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库
-123&amp;lt;script type=&quot;text/javascript">
+通过jquery.cookie(）的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cookie的增删改">
 <meta property="og:url" content="https://linkezhi.github.io/2016/08/31/Cookie的增删改/index.html">
@@ -100,9 +99,8 @@ Cookei存储在浏览器中的变量一小段的文本信息，在客户端中�
 Cookei存储在浏览器中的变量一小段的文本信息，在客户端中记录用户信息。区别于Cookei的Session是通过服务端记录用户信息确定用户身份。
 
 
-通过jquery.cookie(）的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库
-123&amp;lt;script type=&quot;text/javascript">
-<meta property="og:updated_time" content="2016-09-01T01:39:01.897Z">
+通过jquery.cookie(）的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库">
+<meta property="og:updated_time" content="2016-09-01T02:27:04.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cookie的增删改">
 <meta name="twitter:description" content="cookie
@@ -110,8 +108,7 @@ Cookei存储在浏览器中的变量一小段的文本信息，在客户端中�
 Cookei存储在浏览器中的变量一小段的文本信息，在客户端中记录用户信息。区别于Cookei的Session是通过服务端记录用户信息确定用户身份。
 
 
-通过jquery.cookie(）的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库
-123&amp;lt;script type=&quot;text/javascript">
+通过jquery.cookie(）的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库">
 
 
 
@@ -197,6 +194,16 @@ Cookei存储在浏览器中的变量一小段的文本信息，在客户端中�
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -272,6 +279,25 @@ Cookei存储在浏览器中的变量一小段的文本信息，在客户端中�
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -306,7 +332,7 @@ Cookei存储在浏览器中的变量一小段的文本信息，在客户端中�
 <p>Cookei存储在浏览器中的变量一小段的文本信息，在客户端中记录用户信息。区别于Cookei的Session是通过服务端记录用户信息确定用户身份。</p>
 </blockquote>
 <hr>
-<p>通过<a href="http://pan.baidu.com/s/1kVQ3W2N" target="_blank" rel="external">jquery.cookie(）</a>的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库</p>
+<p>通过<a href="http://pan.baidu.com/s/1kVQ3W2N" target="_blank" rel="external">jquery.cookie(）</a>的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库<br><a id="more"></a></p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/jquery-1.6.2.min.js"</span>&gt;&lt;/script&gt; </div><div class="line"></div><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/jquery.cookie.js"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
 <h3 id="添加回话cookie"><a href="#添加回话cookie" class="headerlink" title="添加回话cookie"></a>添加回话cookie</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie', 'the_value'); //有效期默认到用户关闭浏览器为止</div><div class="line">$.cookie('the_cookie', 'the_value', &#123; expires: 7 &#125;); // 有效时间为 7天</div><div class="line">$.cookie('the_cookie', 'the_value', &#123; expires: 7, path: '/' &#125;); //让不同页面读取cookie，需要设置路径。</div></pre></td></tr></table></figure>
 <h3 id="读取cookie"><a href="#读取cookie" class="headerlink" title="读取cookie"></a>读取cookie</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie'); // cookie存在返回 'the_value'，不存在返回null</div></pre></td></tr></table></figure>
@@ -333,11 +359,9 @@ Cookei存储在浏览器中的变量一小段的文本信息，在客户端中�
       
         <div class="post-tags">
           
-            <a href="/tags/jquery-cookie-js/" rel="tag">#jquery.cookie.js</a>
+            <a href="/tags/jquery/" rel="tag">#jquery</a>
           
             <a href="/tags/web前端/" rel="tag">#web前端</a>
-          
-            <a href="/tags/Cookie/" rel="tag">#Cookie</a>
           
         </div>
       
@@ -430,11 +454,18 @@ Cookei存储在浏览器中的变量一小段的文本信息，在客户端中�
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

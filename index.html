@@ -286,24 +286,16 @@
       
         
           
-            <h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><blockquote>
+            <p><strong>cookie</strong></p>
+<blockquote>
 <p>Cookei存储在浏览器中的变量一小段的文本信息，在客户端中记录用户信息。区别于Cookei的Session是通过服务端记录用户信息确定用户身份。</p>
 </blockquote>
 <hr>
 <p>通过<a href="http://pan.baidu.com/s/1kVQ3W2N" target="_blank" rel="external">jquery.cookie(）</a>的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/jquery-1.6.2.min.js"</span>&gt;&lt;/script&gt; </div><div class="line"></div><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/jquery.cookie.js"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
-<ol>
-<li>添加回话cookie</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie', 'the_value'); //有效期默认到用户关闭浏览器为止</div><div class="line">$.cookie('the_cookie', 'the_value', &#123; expires: 7 &#125;); // 有效时间为 7天</div><div class="line">$.cookie('the_cookie', 'the_value', &#123; expires: 7, path: '/' &#125;); //让不同页面读取cookie，需要设置路径。</div></pre></td></tr></table></figure>
-<ol>
-<li>读取cookie</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie'); // cookie存在返回 'the_value'，不存在返回null</div></pre></td></tr></table></figure>
-<ol>
-<li>删除cookie，通过传递null</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie', null); </div><div class="line">$.cookie('hruserType', userType, &#123; expires: 100, path: '/' &#125;);</div><div class="line">$.cookie('hruserCode', userCode, &#123; expires: 100, path: '/' &#125;);</div></pre></td></tr></table></figure>
+<h3 id="添加回话cookie"><a href="#添加回话cookie" class="headerlink" title="添加回话cookie"></a>添加回话cookie</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie', 'the_value'); //有效期默认到用户关闭浏览器为止</div><div class="line">$.cookie('the_cookie', 'the_value', &#123; expires: 7 &#125;); // 有效时间为 7天</div><div class="line">$.cookie('the_cookie', 'the_value', &#123; expires: 7, path: '/' &#125;); //让不同页面读取cookie，需要设置路径。</div></pre></td></tr></table></figure>
+<h3 id="读取cookie"><a href="#读取cookie" class="headerlink" title="读取cookie"></a>读取cookie</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie'); // cookie存在返回 'the_value'，不存在返回null</div></pre></td></tr></table></figure>
+<h3 id="删除cookie，通过传递null"><a href="#删除cookie，通过传递null" class="headerlink" title="删除cookie，通过传递null"></a>删除cookie，通过传递null</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.cookie('the_cookie', null); </div><div class="line">$.cookie('hruserType', userType, &#123; expires: 100, path: '/' &#125;);</div><div class="line">$.cookie('hruserCode', userCode, &#123; expires: 100, path: '/' &#125;);</div></pre></td></tr></table></figure>
 
           
         

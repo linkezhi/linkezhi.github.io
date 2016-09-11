@@ -245,6 +245,132 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/11/GPS坐标转换为百度地图坐标/" itemprop="url">
+                  GPS坐标转换为百度地图坐标
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-11T15:52:25+08:00" content="2016-09-11">
+              2016-09-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/11/GPS坐标转换为百度地图坐标/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/11/GPS坐标转换为百度地图坐标/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>记录一个定位系统相关的项目，这个项目应用场景是要在离线地图下使用GPS采集的坐标进行地图定位。在项目中遇到了一个问题，就是GPS采集的坐标需要进行转换才能在百度地图上定位，而百度地图的加密算法没有进行公开，但在搜索了大量的资料后终于找到了一个可行的转换算法。<br>现分享一下这个GPS坐标转换为百度地图坐标解决方案</p>
+<hr>
+<h3 id="GPS的坐标系"><a href="#GPS的坐标系" class="headerlink" title="GPS的坐标系"></a>GPS的坐标系</h3><blockquote>
+<p>WGS-84是GPS坐标系遵循的标准，从串口读取到GPS的数据包就是这个标准下的格式。GPS的数据帧根据帧头可分类为GPGGA、GPGSA、GPGSV、GPRMC等，我们需要的经纬度、时间可以在GPRMC帧中获取</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/11/GPS坐标转换为百度地图坐标/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/31/Cookie的增删改/" itemprop="url">
                   Cookie的增删改
                 </a>
@@ -521,7 +647,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -538,7 +664,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

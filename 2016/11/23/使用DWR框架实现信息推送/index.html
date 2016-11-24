@@ -98,7 +98,7 @@
 近期的项目需要实现服务端实时推送信息到浏览器并异步更新的功能，之前实现类似功能是用ajax轮询的方法，即浏览器页面每隔一段时间向服务器发送ajax请求，然后后台返回数据给浏览器更新页面。这种方法缺点是连续不断的请求会占用服务器大量的资源，而且服务器是被动地回应请求并返回数据而不是主动推送数据。dwr有个特性叫Revers">
 <meta property="og:image" content="https://linkezhi.github.io/img/QQ图片20161124140541.png">
 <meta property="og:image" content="https://linkezhi.github.io/img/QQ图片20161124140730.png">
-<meta property="og:updated_time" content="2016-11-24T06:11:15.878Z">
+<meta property="og:updated_time" content="2016-11-24T06:21:53.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Dwr框架实现信息推送">
 <meta name="twitter:description" content="Dwr介绍
@@ -327,7 +327,7 @@
         <h3 id="Dwr介绍"><a href="#Dwr介绍" class="headerlink" title="Dwr介绍"></a>Dwr介绍</h3><blockquote>
 <p>能使java后台和前端javascript互相调用的java库</p>
 </blockquote>
-<p>近期的项目需要实现服务端实时推送信息到浏览器并异步更新的功能，之前实现类似功能是用ajax轮询的方法，即浏览器页面每隔一段时间向服务器发送ajax请求，然后后台返回数据给浏览器更新页面。这种方法缺点是连续不断的请求会占用服务器大量的资源，而且服务器是被动地回应请求并返回数据而不是主动推送数据。<br>dwr有个特性叫Reverse Ajax（逆向Ajax），即从服务端主动向多个浏览器推送数据的技术。这个功能刚好满足需求，本文就使用dwr实现信息推送功能做个案例讲解。</p>
+<p>近期的项目需要实现服务端实时推送信息到浏览器并异步更新的功能，之前实现类似功能是用ajax轮询的方法，即浏览器页面每隔一段时间向服务器发送ajax请求，然后后台返回数据给浏览器更新页面。这种方法缺点是连续不断的请求会占用服务器大量的资源，而且服务器是被动地回应请求并返回数据而不是主动推送数据。<br>dwr有个特性叫Reverse Ajax（逆向Ajax），即从服务端主动向多个浏览器推送数据的技术。这个功能刚好满足需求，本文就使用dwr实现信息推送功能做个案例讲解。<br> <a id="more"></a></p>
 <hr>
 <h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>环境：<br>JDK 1.8<br>Tomcat 8.0<br>Window 7</p>
 <p>支持jar包：<br>dwr3.0.jar<br>commons-logging-1.2.jar<br><a href="http://pan.baidu.com/s/1hsLoDhy" target="_blank" rel="external">网盘下载</a></p>

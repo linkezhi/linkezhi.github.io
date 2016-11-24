@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JAVA,DWR," />
 
 
 
@@ -84,12 +84,28 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Z博客">
-<meta property="og:url" content="https://linkezhi.github.io/index.html">
+<meta name="description" content="Dwr介绍
+能使java后台和前端javascript互相调用的java库
+
+近期的项目需要实现服务端实时推送信息到浏览器并异步更新的功能，之前实现类似功能是用ajax轮询的方法，即浏览器页面每隔一段时间向服务器发送ajax请求，然后后台返回数据给浏览器更新页面。这种方法缺点是连续不断的请求会占用服务器大量的资源，而且服务器是被动地回应请求并返回数据而不是主动推送数据。dwr有个特性叫Revers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Dwr框架实现信息推送">
+<meta property="og:url" content="https://linkezhi.github.io/2016/11/23/使用DWR框架实现信息推送/index.html">
 <meta property="og:site_name" content="Z博客">
+<meta property="og:description" content="Dwr介绍
+能使java后台和前端javascript互相调用的java库
+
+近期的项目需要实现服务端实时推送信息到浏览器并异步更新的功能，之前实现类似功能是用ajax轮询的方法，即浏览器页面每隔一段时间向服务器发送ajax请求，然后后台返回数据给浏览器更新页面。这种方法缺点是连续不断的请求会占用服务器大量的资源，而且服务器是被动地回应请求并返回数据而不是主动推送数据。dwr有个特性叫Revers">
+<meta property="og:image" content="https://linkezhi.github.io/img/QQ图片20161124140541.png">
+<meta property="og:image" content="https://linkezhi.github.io/img/QQ图片20161124140730.png">
+<meta property="og:updated_time" content="2016-11-24T06:11:15.878Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Z博客">
+<meta name="twitter:title" content="使用Dwr框架实现信息推送">
+<meta name="twitter:description" content="Dwr介绍
+能使java后台和前端javascript互相调用的java库
+
+近期的项目需要实现服务端实时推送信息到浏览器并异步更新的功能，之前实现类似功能是用ajax轮询的方法，即浏览器页面每隔一段时间向服务器发送ajax请求，然后后台返回数据给浏览器更新页面。这种方法缺点是连续不断的请求会占用服务器大量的资源，而且服务器是被动地回应请求并返回数据而不是主动推送数据。dwr有个特性叫Revers">
+<meta name="twitter:image" content="https://linkezhi.github.io/img/QQ图片20161124140541.png">
 
 
 
@@ -110,9 +126,9 @@
 
 
 
-  <link rel="canonical" href="https://linkezhi.github.io/"/>
+  <link rel="canonical" href="https://linkezhi.github.io/2016/11/23/使用DWR框架实现信息推送/"/>
 
-  <title> Z博客 </title>
+  <title> 使用Dwr框架实现信息推送 | Z博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,9 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -222,9 +236,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -244,10 +258,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/23/使用DWR框架实现信息推送/" itemprop="url">
-                  使用Dwr框架实现信息推送
-                </a>
+                使用Dwr框架实现信息推送
               
             
           </h1>
@@ -313,9 +324,7 @@
       
 
       
-        
-          
-            <h3 id="Dwr介绍"><a href="#Dwr介绍" class="headerlink" title="Dwr介绍"></a>Dwr介绍</h3><blockquote>
+        <h3 id="Dwr介绍"><a href="#Dwr介绍" class="headerlink" title="Dwr介绍"></a>Dwr介绍</h3><blockquote>
 <p>能使java后台和前端javascript互相调用的java库</p>
 </blockquote>
 <p>近期的项目需要实现服务端实时推送信息到浏览器并异步更新的功能，之前实现类似功能是用ajax轮询的方法，即浏览器页面每隔一段时间向服务器发送ajax请求，然后后台返回数据给浏览器更新页面。这种方法缺点是连续不断的请求会占用服务器大量的资源，而且服务器是被动地回应请求并返回数据而不是主动推送数据。<br>dwr有个特性叫Reverse Ajax（逆向Ajax），即从服务端主动向多个浏览器推送数据的技术。这个功能刚好满足需求，本文就使用dwr实现信息推送功能做个案例讲解。</p>
@@ -361,418 +370,61 @@
 </ol>
 <h4 id="案例代码"><a href="#案例代码" class="headerlink" title="案例代码"></a>案例代码</h4><p><a href="https://github.com/linkezhi/dwr" target="_blank" rel="external">dwr demo</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/11/GPS坐标转换为百度地图坐标/" itemprop="url">
-                  GPS坐标转换为百度地图坐标
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-11T15:52:25+08:00" content="2016-09-11">
-              2016-09-11
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/JAVA/" rel="tag">#JAVA</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/11/GPS坐标转换为百度地图坐标/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/11/GPS坐标转换为百度地图坐标/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/DWR/" rel="tag">#DWR</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>记录一个定位系统相关的项目，这个项目应用场景是要在离线地图下使用GPS采集的坐标进行地图定位。在项目中遇到了一个问题，就是GPS采集的坐标需要进行转换才能在百度地图上定位，而百度地图的加密算法没有进行公开，但在搜索了大量的资料后终于找到了一个可行的转换算法。<br>现分享一下这个GPS坐标转换为百度地图坐标解决方案</p>
-<hr>
-<h3 id="GPS的坐标系"><a href="#GPS的坐标系" class="headerlink" title="GPS的坐标系"></a>GPS的坐标系</h3><blockquote>
-<p>WGS-84是GPS坐标系遵循的标准，从串口读取到GPS的数据包就是这个标准下的格式。GPS的数据帧根据帧头可分类为GPGGA、GPGSA、GPGSV、GPRMC等，我们需要的经纬度、时间可以在GPRMC帧中获取</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/11/GPS坐标转换为百度地图坐标/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/11/GPS坐标转换为百度地图坐标/" rel="next" title="GPS坐标转换为百度地图坐标">
+                <i class="fa fa-chevron-left"></i> GPS坐标转换为百度地图坐标
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/31/Cookie的增删改/" itemprop="url">
-                  Cookie的增删改
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-31T17:07:30+08:00" content="2016-08-31">
-              2016-08-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/31/Cookie的增删改/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/Cookie的增删改/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p><strong>cookie</strong></p>
-<blockquote>
-<p>Cookei存储在浏览器中的变量一小段的文本信息，在客户端中记录用户信息。区别于Cookei的Session是通过服务端记录用户信息确定用户身份。</p>
-</blockquote>
-<hr>
-<p>通过<a href="http://pan.baidu.com/s/1kVQ3W2N">jquery.cookie(）</a>的方法对Cookie进行简单的增删改查操作，jquery.cookie()是一个cookie插件，使用前要先依赖jquery库<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/31/Cookie的增删改/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/05/在Github上搭建Hexo静态博客/" itemprop="url">
-                  在Github上搭建Hexo静态博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-05T20:39:14+08:00" content="2016-08-05">
-              2016-08-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/05/在Github上搭建Hexo静态博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/05/在Github上搭建Hexo静态博客/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p><strong>系统：</strong></p>
-<ul>
-<li>Window7 64位<br><strong>软件：</strong></li>
-<li>Git</li>
-<li>Node.js<br><strong>注册账号：</strong></li>
-<li>GitHub账号</li>
-</ul>
-<hr>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/05/在Github上搭建Hexo静态博客/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -780,6 +432,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/23/使用DWR框架实现信息推送/"
+           data-title="使用Dwr框架实现信息推送" data-url="https://linkezhi.github.io/2016/11/23/使用DWR框架实现信息推送/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -799,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -850,6 +519,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dwr介绍"><span class="nav-number">1.</span> <span class="nav-text">Dwr介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前期准备"><span class="nav-number">2.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例讲解"><span class="nav-number">3.</span> <span class="nav-text">案例讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#广播推送"><span class="nav-number">3.1.</span> <span class="nav-text">广播推送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精确推送"><span class="nav-number">3.2.</span> <span class="nav-text">精确推送</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例代码"><span class="nav-number">3.3.</span> <span class="nav-text">案例代码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -953,6 +633,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

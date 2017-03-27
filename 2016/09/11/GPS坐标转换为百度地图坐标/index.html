@@ -1,0 +1,723 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="离线地图,GPS,百度地图," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="记录一个定位系统相关的项目，这个项目应用场景是要在离线地图下使用GPS采集的坐标进行地图定位。在项目中遇到了一个问题，就是GPS采集的坐标需要进行转换才能在百度地图上定位，而百度地图的加密算法没有进行公开，但在搜索了大量的资料后终于找到了一个可行的转换算法。现分享一下这个GPS坐标转换为百度地图坐标解决方案
+
+GPS的坐标系
+WGS-84是GPS坐标系遵循的标准，从串口读取到GPS的数据包就是这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPS坐标转换为百度地图坐标">
+<meta property="og:url" content="https://linkezhi.github.io/2016/09/11/GPS坐标转换为百度地图坐标/index.html">
+<meta property="og:site_name" content="Z博客">
+<meta property="og:description" content="记录一个定位系统相关的项目，这个项目应用场景是要在离线地图下使用GPS采集的坐标进行地图定位。在项目中遇到了一个问题，就是GPS采集的坐标需要进行转换才能在百度地图上定位，而百度地图的加密算法没有进行公开，但在搜索了大量的资料后终于找到了一个可行的转换算法。现分享一下这个GPS坐标转换为百度地图坐标解决方案
+
+GPS的坐标系
+WGS-84是GPS坐标系遵循的标准，从串口读取到GPS的数据包就是这个">
+<meta property="og:updated_time" content="2016-09-11T09:57:35.447Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GPS坐标转换为百度地图坐标">
+<meta name="twitter:description" content="记录一个定位系统相关的项目，这个项目应用场景是要在离线地图下使用GPS采集的坐标进行地图定位。在项目中遇到了一个问题，就是GPS采集的坐标需要进行转换才能在百度地图上定位，而百度地图的加密算法没有进行公开，但在搜索了大量的资料后终于找到了一个可行的转换算法。现分享一下这个GPS坐标转换为百度地图坐标解决方案
+
+GPS的坐标系
+WGS-84是GPS坐标系遵循的标准，从串口读取到GPS的数据包就是这个">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://linkezhi.github.io/2016/09/11/GPS坐标转换为百度地图坐标/"/>
+
+  <title> GPS坐标转换为百度地图坐标 | Z博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Z博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Hello World</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GPS坐标转换为百度地图坐标
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-11T15:52:25+08:00" content="2016-09-11">
+              2016-09-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/11/GPS坐标转换为百度地图坐标/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/11/GPS坐标转换为百度地图坐标/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录一个定位系统相关的项目，这个项目应用场景是要在离线地图下使用GPS采集的坐标进行地图定位。在项目中遇到了一个问题，就是GPS采集的坐标需要进行转换才能在百度地图上定位，而百度地图的加密算法没有进行公开，但在搜索了大量的资料后终于找到了一个可行的转换算法。<br>现分享一下这个GPS坐标转换为百度地图坐标解决方案</p>
+<hr>
+<h3 id="GPS的坐标系"><a href="#GPS的坐标系" class="headerlink" title="GPS的坐标系"></a>GPS的坐标系</h3><blockquote>
+<p>WGS-84是GPS坐标系遵循的标准，从串口读取到GPS的数据包就是这个标准下的格式。GPS的数据帧根据帧头可分类为GPGGA、GPGSA、GPGSV、GPRMC等，我们需要的经纬度、时间可以在GPRMC帧中获取</p>
+</blockquote>
+<a id="more"></a>
+<p><strong>串口接收到GPS数据包</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$GPGGA</span>,<span class="number">103401.468</span>,,,,,<span class="number">0</span>,<span class="number">00</span>,<span class="number">50.0</span>,,M,<span class="number">0.0</span>,M,,<span class="number">0000</span>*<span class="number">40</span></div><div class="line"><span class="variable">$GPGSA</span>,A,<span class="number">1</span>,,,,,,,,,,,,,,,*<span class="number">1</span>E</div><div class="line"><span class="variable">$GPRMC</span>,<span class="number">103401.468</span>,V,,,,,,,<span class="number">270716</span>,,,N*<span class="number">45</span></div><div class="line"><span class="variable">$GPGGA</span>,<span class="number">103402.468</span>,,,,,<span class="number">0</span>,<span class="number">00</span>,<span class="number">50.0</span>,,M,<span class="number">0.0</span>,M,,<span class="number">0000</span>*<span class="number">43</span></div><div class="line"><span class="variable">$GPGSA</span>,A,<span class="number">1</span>,,,,,,,,,,,,,,,*<span class="number">1</span>E</div><div class="line"><span class="variable">$GPRMC</span>,<span class="number">103402.468</span>,V,,,,,,,<span class="number">270716</span>,,,N*<span class="number">46</span></div><div class="line"><span class="variable">$GPGGA</span>,<span class="number">103403.468</span>,,,,,<span class="number">0</span>,<span class="number">00</span>,<span class="number">50.0</span>,,M,<span class="number">0.0</span>,M,,<span class="number">0000</span>*<span class="number">42</span></div><div class="line"><span class="variable">$GPGSA</span>,A,<span class="number">1</span>,,,,,,,,,,,,,,,*<span class="number">1</span>E</div><div class="line"><span class="variable">$GPGSV</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">12</span>,<span class="number">05</span>,<span class="number">58</span>,<span class="number">277</span>,<span class="number">25</span>,<span class="number">06</span>,<span class="number">37</span>,<span class="number">061</span>,<span class="number">17</span>,<span class="number">02</span>,<span class="number">51</span>,<span class="number">358</span>,,<span class="number">12</span>,<span class="number">30</span>,<span class="number">262</span>,*<span class="number">78</span></div><div class="line"><span class="variable">$GPGSV</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">25</span>,<span class="number">179</span>,,<span class="number">04</span>,<span class="number">21</span>,<span class="number">146</span>,,<span class="number">17</span>,<span class="number">21</span>,<span class="number">140</span>,,<span class="number">25</span>,<span class="number">14</span>,<span class="number">297</span>,*<span class="number">7</span>B</div><div class="line"><span class="variable">$GPGSV</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">12</span>,<span class="number">20</span>,<span class="number">14</span>,<span class="number">246</span>,,<span class="number">09</span>,<span class="number">11</span>,<span class="number">042</span>,,<span class="number">29</span>,<span class="number">05</span>,<span class="number">322</span>,,<span class="number">15</span>,<span class="number">03</span>,<span class="number">204</span>,*<span class="number">7</span>E</div><div class="line"><span class="variable">$GPRMC</span>,<span class="number">103403.468</span>,V,,,,,,,<span class="number">270716</span>,,,N*<span class="number">47</span></div><div class="line"><span class="variable">$GPGGA</span>,<span class="number">103404.468</span>,,,,,<span class="number">0</span>,<span class="number">00</span>,<span class="number">50.0</span>,,M,<span class="number">0.0</span>,M,,<span class="number">0000</span>*<span class="number">45</span></div><div class="line"><span class="variable">$GPGSA</span>,A,<span class="number">1</span>,,,,,,,,,,,,,,,*<span class="number">1</span>E</div><div class="line"><span class="variable">$GPRMC</span>,<span class="number">103404.468</span>,V,,,,,,,<span class="number">270716</span>,,,N*<span class="number">40</span></div><div class="line"><span class="variable">$GPGGA</span>,<span class="number">103405.468</span>,,,,,<span class="number">0</span>,<span class="number">00</span>,<span class="number">50.0</span>,,M,<span class="number">0.0</span>,M,,<span class="number">0000</span>*<span class="number">44</span></div></pre></td></tr></table></figure></p>
+<p>现我们解析下GPS数据包下的数据帧</p>
+<h4 id="GPGGA"><a href="#GPGGA" class="headerlink" title="GPGGA"></a>GPGGA</h4><blockquote>
+<p>Global Positioning System Fix Data（GGA）GPS定位信息</p>
+</blockquote>
+<p>$GPGGA,105420.000,2302.6623,N,11312.4958,E,1,07,1.2,32.9,M,-6.8,M,,0000<em>73<br>$GPGGA,<1>,<2>,<3>,<4>,<5>,<6>,<7>,<8>,<9>,M,<10>,M,<11>,<12></12></11></10></9></8></7></6></5></4></3></2></1></em>hh<cr><lf></lf></cr></p>
+<p><1> UTC时间，hhmmss（时分秒）格式</1></p>
+<blockquote>
+<p>注解：105420.000表示UTC时间为10时54分20秒，如果换算成北京时间加8个小时就行，即位18时54分20秒。<br>GPS系统的时间与UTC时间是不同的，差了一个闰秒，因为UTC时间是可以调整的，而GPS时间是连续的，闰秒数在下行的导航电文中有反应。北京时=GPS时+8小时-闰秒。GPGGA和GPRMC中本身已经将GPS时间转换为UTC时间了，所以该时间与北京时只差8小时，GPS时间显示为2月28日0时（假设该年非闰年的话），北京时是2月28日8时；GPS时间为2月27日15时，则北京时间为2月27日23时，；GPS时间为2月27日18时，则北京时间为2月28日2时；GPS时间为2月28日18时，则北京时间为3月1日，2时。</p>
+</blockquote>
+<p><2> 纬度ddmm.mmmm（度分）格式（前面的0也将被传输）</2></p>
+<p><3> 纬度半球N（北半球）或S（南半球） </3></p>
+<p><4> 经度dddmm.mmmm（度分）格式（前面的0也将被传输） </4></p>
+<p><5> 经度半球E（东经）或W（西经） </5></p>
+<p><6> GPS状态：0=未定位，1=非差分定位，2=差分定位，6=正在估算 </6></p>
+<p><7> 正在使用解算位置的卫星数量（00~12）（前面的0也将被传输） </7></p>
+<p><8> HDOP水平精度因子（0.5~99.9） </8></p>
+<p><9> 海拔高度（-9999.9~99999.9） </9></p>
+<p><10> 地球椭球面相对大地水准面的高度 </10></p>
+<p><11> 差分时间（从最近一次接收到差分信号开始的秒数，如果不是差分定位将为空） </11></p>
+<p><12> 差分站ID号0000~1023（前面的0也将被传输，如果不是差分定位将为空）</12></p>
+<hr>
+<h4 id="GPRMC"><a href="#GPRMC" class="headerlink" title="GPRMC"></a>GPRMC</h4><blockquote>
+<p>Recommended Minimum Specific GPS/TRANSIT Data（RMC）推荐定位信息<br>$GPRMC,105422.000,A,2302.6623,N,11312.4957,E,0.17,51.46,190716,,,A<em>5B<br>$GPRMC,<1>,<2>,<3>,<4>,<5>,<6>,<7>,<8>,<9>,<10>,<11>,<12></12></11></10></9></8></7></6></5></4></3></2></1></em>hh<cr><lf></lf></cr></p>
+<p><1> UTC时间，hhmmss（时分秒）格式 </1></p>
+<p><2> 定位状态，A=有效定位，V=无效定位 </2></p>
+<p><3> 纬度ddmm.mmmm（度分）格式（前面的0也将被传输） </3></p>
+<p><4> 纬度半球N（北半球）或S（南半球） </4></p>
+<p><5> 经度dddmm.mmmm（度分）格式（前面的0也将被传输） </5></p>
+<p><6> 经度半球E（东经）或W（西经） </6></p>
+<p><7> 地面速率（000.0~999.9节，前面的0也将被传输） </7></p>
+<p><8> 地面航向（000.0~359.9度，以真北为参考基准，前面的0也将被传输） </8></p>
+<p><9> UTC日期，ddmmyy（日月年）格式 </9></p>
+<p><10> 磁偏角（000.0~180.0度，前面的0也将被传输） </10></p>
+<p><11> 磁偏角方向，E（东）或W（西） </11></p>
+<p><12> 模式指示（仅NMEA0183 3.00版本输出，A=自主定位，D=差分，E=估算，N=数据无效）</12></p>
+<hr>
+<h4 id="GPGGA-1"><a href="#GPGGA-1" class="headerlink" title="GPGGA"></a>GPGGA</h4><p> GPS DOP and Active Satellites（GSA）当前卫星信息</p>
+</blockquote>
+<p>$GPGSA,A,3,05,19,02,06,12,17,13,09,,,,,2.2,0.9,2.0*3E<br>$GPGSA,<1>,<2>,<3>,<3>,,,,,<3>,<3>,<3>,<4>,<5>,<6>,<7><cr><lf></lf></cr></7></6></5></4></3></3></3></3></3></2></1></p>
+<p><1>模式 ：M = 手动， A = 自动。 </1></p>
+<p><2>定位型式 1 = 未定位， 2 = 二维定位， 3 = 三维定位。 </2></p>
+<p><3>PRN 数字：01 至 32 表天空使用中的卫星编号，最多可接收12颗卫星信息。 </3></p>
+<p><4> PDOP位置精度因子（0.5~99.9） </4></p>
+<p><5> HDOP水平精度因子（0.5~99.9） </5></p>
+<p><6> VDOP垂直精度因子（0.5~99.9） </6></p>
+<p><7> Checksum.(检查位).</7></p>
+<hr>
+<h4 id="GPGSV"><a href="#GPGSV" class="headerlink" title="GPGSV"></a>GPGSV</h4><blockquote>
+<p>GPS Satellites in View（GSV）可见卫星信息</p>
+</blockquote>
+<p>$GPGSV,3,2,12,12,32,270,22,17,26,136,20,13,19,181,14,09,15,046,08*78<br>$GPGSV, <1>,<2>,<3>,<4>,<5>,<6>,<7>,?<4>,<5>,<6>,<7>,<8><cr><lf></lf></cr></8></7></6></5></4></7></6></5></4></3></2></1></p>
+<p><1> GSV语句的总数 </1></p>
+<p><2> 本句GSV的编号 </2></p>
+<p><3> 可见卫星的总数，00 至 12。 </3></p>
+<p><4> 卫星编号， 01 至 32。 </4></p>
+<p><5>卫星仰角， 00 至 90 度。 </5></p>
+<p><6>卫星方位角， 000 至 359 度。实际值。 </6></p>
+<p><7>讯号噪声比（C/No）， 00 至 99 dB；无表未接收到讯号。 </7></p>
+<p><8>Checksum.(检查位).<br>第<4>,<5>,<6>,<7>项个别卫星会重复出现，每行最多有四颗卫星。其余卫星信息会于次一行出现，若未使用，这些字段会空白。</7></6></5></4></8></p>
+<h3 id="GPS坐标转换算法"><a href="#GPS坐标转换算法" class="headerlink" title="GPS坐标转换算法"></a>GPS坐标转换算法</h3><blockquote>
+<p>GPS采集原始数据格式是纬度ddmm.mmmmmm（度分）格式、经度dddmm.mmmmm（度分）格式，要先转换为定位地图的数据格式dd.dddddd</p>
+</blockquote>
+<p>1.GPS（WGS-84）格式转换：<br>3040.8639,N,10405.7573,E 根据度分格式解析为北纬30°40.8639’，东经104°5.7573’ ，然后根据度分秒转换成格式为dd.dddddd的小数形式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">String lons = "4349.2353";</div><div class="line">String lats = "08737.4384";</div><div class="line">String lon_gps[] = &#123;lons.substring(0,2),lons.substring(2,4),lons.substring(5)&#125;;</div><div class="line">String lat_gps[] = &#123;lats.substring(0,3),lats.substring(3,5),lats.substring(6)&#125;;</div><div class="line">double lon = Double.parseDouble(lon_gps[0]) + Double.parseDouble(lon_gps[1])/60 +  Double.parseDouble(lon_gps[2])/100/3600;</div><div class="line">double lat =  Double.parseDouble(lat_gps[0]) + Double.parseDouble(lat_gps[1])/60 +  Double.parseDouble(lat_gps[2])/100/3600;</div><div class="line">System.out.println(lon+"=======" + lat);</div></pre></td></tr></table></figure>
+<p>2.GPS（BD-09）格式转换：</p>
+<blockquote>
+<p>WGS-84的坐标是国际标准，而百度地图定位的加密标准是BD-09(在GCJ-02基础二次加密)。</p>
+</blockquote>
+<p>算法复杂直接用java代码展示吧<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		</div><div class="line">		String lons = "4349.2353";//gps纬度</div><div class="line">		String lats = "08737.4384";//gps经度</div><div class="line">		String lon_gps[] = &#123;lons.substring(0,2),lons.substring(2,4),lons.substring(5)&#125;;</div><div class="line">		String lat_gps[] = &#123;lats.substring(0,3),lats.substring(3,5),lats.substring(6)&#125;;</div><div class="line">		double lon = Double.parseDouble(lon_gps[0]) + Double.parseDouble(lon_gps[1])/60 +  Double.parseDouble(lon_gps[2])/100/3600;</div><div class="line">		double lat =  Double.parseDouble(lat_gps[0]) + Double.parseDouble(lat_gps[1])/60 +  Double.parseDouble(lat_gps[2])/100/3600;</div><div class="line">		System.out.println(lon+"=======" + lat);</div><div class="line">		double db[] = wgs2bd(lat, lon);//WGS坐标转换百度坐标</div><div class="line">		System.out.println(db[0]+"=="+db[1]);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">public static double[] wgs2bd(double lat, double lon) &#123;</div><div class="line">	       double[] wgs2gcj = wgs2gcj(lat, lon);</div><div class="line">	       double[] gcj2bd = gcj2bd(wgs2gcj[0], wgs2gcj[1]);</div><div class="line">	       return gcj2bd;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static double[] gcj2bd(double lat, double lon) &#123;</div><div class="line">	       double x = lon, y = lat;</div><div class="line">	       double z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);</div><div class="line">	       double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);</div><div class="line">	       double bd_lon = z * Math.cos(theta) + 0.0065;</div><div class="line">	       double bd_lat = z * Math.sin(theta) + 0.006;</div><div class="line">	       return new double[] &#123; bd_lat, bd_lon &#125;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static double[] bd2gcj(double lat, double lon) &#123;</div><div class="line">	       double x = lon - 0.0065, y = lat - 0.006;</div><div class="line">	       double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);</div><div class="line">	       double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);</div><div class="line">	       double gg_lon = z * Math.cos(theta);</div><div class="line">	       double gg_lat = z * Math.sin(theta);</div><div class="line">	       return new double[] &#123; gg_lat, gg_lon &#125;;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>最后感谢：<br><a href="http://blog.csdn.net/gulansheng/article/details/44496185" target="_blank" rel="external">http://blog.csdn.net/gulansheng/article/details/44496185</a><br><a href="http://bbs.lbsyun.baidu.com/forum.php?mod=viewthread&amp;tid=10923" target="_blank" rel="external">http://bbs.lbsyun.baidu.com/forum.php?mod=viewthread&amp;tid=10923</a><br><a href="http://www.cnblogs.com/zhaohuionly/archive/2013/06/18/3142623.html" target="_blank" rel="external">http://www.cnblogs.com/zhaohuionly/archive/2013/06/18/3142623.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/离线地图/" rel="tag">#离线地图</a>
+          
+            <a href="/tags/GPS/" rel="tag">#GPS</a>
+          
+            <a href="/tags/百度地图/" rel="tag">#百度地图</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/31/Cookie的增删改/" rel="next" title="Cookie的增删改">
+                <i class="fa fa-chevron-left"></i> Cookie的增删改
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/23/使用DWR框架实现信息推送/" rel="prev" title="使用Dwr框架实现信息推送1">
+                使用Dwr框架实现信息推送1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/11/GPS坐标转换为百度地图坐标/"
+           data-title="GPS坐标转换为百度地图坐标" data-url="https://linkezhi.github.io/2016/09/11/GPS坐标转换为百度地图坐标/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="linkezhi" />
+          <p class="site-author-name" itemprop="name">linkezhi</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GPS的坐标系"><span class="nav-number">1.</span> <span class="nav-text">GPS的坐标系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GPGGA"><span class="nav-number">1.1.</span> <span class="nav-text">GPGGA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GPRMC"><span class="nav-number">1.2.</span> <span class="nav-text">GPRMC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GPGGA-1"><span class="nav-number">1.3.</span> <span class="nav-text">GPGGA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GPGSV"><span class="nav-number">1.4.</span> <span class="nav-text">GPGSV</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPS坐标转换算法"><span class="nav-number">2.</span> <span class="nav-text">GPS坐标转换算法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">linkezhi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"linkezhi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

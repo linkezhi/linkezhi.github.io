@@ -71,5 +71,4 @@ deploy:
   type: git
   #linkezhi改为你的github用户名
   repository: git@github.com:linkezhi/linkezhi.github.io.git
-  #repository: https://github.com/linkezhi/linkezhi.github.io.git
   branch: master

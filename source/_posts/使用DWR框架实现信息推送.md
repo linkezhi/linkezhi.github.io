@@ -1,5 +1,5 @@
 ---
-title: 使用Dwr框架实现信息推送1
+title: 使用Dwr框架实现信息推送
 date: 2016-11-23 10:31:34
 categories: Web
 tags:
